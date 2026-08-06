@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Magic Home | Premium Home Appliances</title>
+    <title>Magic Home | Home Appliances & Daily Offers</title>
     <!-- Google Fonts & Font Awesome Icons -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -17,6 +17,7 @@
             --white: #FFFFFF;
             --light-grey: #F5F5F7;
             --whatsapp-green: #25D366;
+            --badge-red: #E53935;
         }
 
         * {
@@ -24,6 +25,10 @@
             padding: 0;
             box-sizing: border-box;
             font-family: 'Poppins', sans-serif;
+        }
+
+        html {
+            scroll-behavior: smooth;
         }
 
         body {
@@ -66,6 +71,7 @@
             display: flex;
             list-style: none;
             gap: 2rem;
+            align-items: center;
         }
 
         .nav-links a {
@@ -77,6 +83,29 @@
 
         .nav-links a:hover {
             color: var(--orange);
+        }
+
+        .nav-links .offer-link {
+            background: var(--orange);
+            color: var(--white);
+            padding: 0.4rem 1rem;
+            border-radius: 20px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+            box-shadow: 0 0 10px rgba(255, 107, 0, 0.5);
+            animation: pulse-glow 2s infinite;
+        }
+
+        .nav-links .offer-link:hover {
+            background: var(--orange-hover);
+            color: var(--white);
+        }
+
+        @keyframes pulse-glow {
+            0%, 100% { box-shadow: 0 0 10px rgba(255, 107, 0, 0.5); }
+            50% { box-shadow: 0 0 20px rgba(255, 107, 0, 0.9); }
         }
 
         .menu-toggle {
@@ -157,6 +186,12 @@
             animation: fadeInUp 1s ease-out 0.2s backwards;
         }
 
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
         .btn-primary {
             display: inline-block;
             background-color: var(--orange);
@@ -174,6 +209,25 @@
             background-color: var(--orange-hover);
             transform: translateY(-3px);
             box-shadow: 0 6px 20px rgba(255, 107, 0, 0.6);
+        }
+
+        .btn-secondary {
+            display: inline-block;
+            background-color: transparent;
+            color: var(--white);
+            border: 2px solid var(--orange);
+            padding: 0.75rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            animation: fadeInUp 1s ease-out 0.5s backwards;
+        }
+
+        .btn-secondary:hover {
+            background-color: var(--orange);
+            color: var(--white);
+            transform: translateY(-3px);
         }
 
         /* Floating Showcase */
@@ -230,18 +284,23 @@
             to { opacity: 1; }
         }
 
-        /* Categories Section */
-        .features {
-            padding: 5rem 2rem;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
+        /* Section Styling */
         .section-title {
             text-align: center;
             font-size: 2.2rem;
-            margin-bottom: 3rem;
+            margin-bottom: 1rem;
             position: relative;
+        }
+
+        .section-title span {
+            color: var(--orange);
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: #666;
+            margin-bottom: 3rem;
+            font-size: 1.05rem;
         }
 
         .section-title::after {
@@ -252,6 +311,213 @@
             background: var(--orange);
             margin: 0.5rem auto 0;
             border-radius: 2px;
+        }
+
+        /* TODAY'S OFFERS SECTION */
+        .offers-section {
+            padding: 5rem 2rem;
+            background: linear-gradient(180deg, #FFF6F0 0%, var(--white) 100%);
+            position: relative;
+        }
+
+        .timer-container {
+            background: var(--black);
+            color: var(--white);
+            max-width: 600px;
+            margin: 0 auto 3rem;
+            padding: 1.2rem 2rem;
+            border-radius: 50px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 1.5rem;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+            border: 2px solid var(--orange);
+        }
+
+        .timer-label {
+            font-weight: 600;
+            font-size: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--orange);
+        }
+
+        .timer-boxes {
+            display: flex;
+            gap: 0.8rem;
+            font-weight: 700;
+        }
+
+        .timer-box {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 0.4rem 0.8rem;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            min-width: 45px;
+            text-align: center;
+        }
+
+        .timer-box span {
+            display: block;
+            font-size: 0.65rem;
+            font-weight: 400;
+            color: #AAA;
+            text-transform: uppercase;
+        }
+
+        .offers-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2.5rem;
+        }
+
+        .offer-card {
+            background: var(--white);
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            border: 1px solid #EAEAEA;
+            transition: all 0.3s ease;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .offer-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 18px 40px rgba(255, 107, 0, 0.18);
+            border-color: var(--orange);
+        }
+
+        .badge-discount {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            background: var(--badge-red);
+            color: var(--white);
+            font-weight: 700;
+            font-size: 0.85rem;
+            padding: 0.4rem 0.9rem;
+            border-radius: 30px;
+            z-index: 10;
+            box-shadow: 0 4px 10px rgba(229, 57, 53, 0.4);
+        }
+
+        .badge-tag {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: var(--black);
+            color: var(--orange);
+            font-weight: 600;
+            font-size: 0.75rem;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            z-index: 10;
+        }
+
+        .offer-img-wrapper {
+            position: relative;
+            width: 100%;
+            height: 240px;
+            background: #F9F9F9;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem;
+        }
+
+        .offer-img-wrapper img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+            transition: transform 0.5s ease;
+        }
+
+        .offer-card:hover .offer-img-wrapper img {
+            transform: scale(1.08);
+        }
+
+        .offer-details {
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+
+        .offer-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: var(--black);
+        }
+
+        .offer-desc {
+            font-size: 0.9rem;
+            color: #666;
+            margin-bottom: 1.2rem;
+        }
+
+        .price-container {
+            display: flex;
+            align-items: baseline;
+            gap: 0.8rem;
+            margin-bottom: 1.5rem;
+            margin-top: auto;
+        }
+
+        .deal-price {
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: var(--orange);
+        }
+
+        .original-price {
+            font-size: 1.1rem;
+            color: #999;
+            text-decoration: line-through;
+        }
+
+        .save-amount {
+            font-size: 0.8rem;
+            color: #2E7D32;
+            font-weight: 600;
+            background: #E8F5E9;
+            padding: 0.2rem 0.5rem;
+            border-radius: 4px;
+        }
+
+        .btn-claim {
+            width: 100%;
+            background: var(--black);
+            color: var(--white);
+            border: none;
+            padding: 0.8rem;
+            border-radius: 8px;
+            font-weight: 600;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .btn-claim:hover {
+            background: var(--orange);
+            color: var(--white);
+        }
+
+        /* Categories Section */
+        .features {
+            padding: 5rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
         }
 
         .grid-products {
@@ -401,7 +667,6 @@
             color: var(--white);
         }
 
-        /* Pulsing Ring Effect on WhatsApp Button */
         .whatsapp-float::before {
             content: '';
             position: absolute;
@@ -477,6 +742,10 @@
                 font-size: 2.3rem;
             }
 
+            .hero-buttons {
+                justify-content: center;
+            }
+
             .appliance-badge {
                 width: 240px;
                 height: 240px;
@@ -484,6 +753,12 @@
             
             .appliance-badge i {
                 font-size: 4.5rem;
+            }
+
+            .timer-container {
+                flex-direction: column;
+                border-radius: 20px;
+                gap: 0.8rem;
             }
 
             .location-container {
@@ -511,6 +786,7 @@
             </div>
             <ul class="nav-links" id="nav-list">
                 <li><a href="#home">Home</a></li>
+                <li><a href="#offers" class="offer-link"><i class="fas fa-fire"></i> Today's Offers</a></li>
                 <li><a href="#products">Categories</a></li>
                 <li><a href="#location">Visit Us</a></li>
                 <li><a href="#contact">Contact</a></li>
@@ -519,7 +795,7 @@
     </header>
 
     <!-- Floating WhatsApp Button -->
-    <a href="https://wa.me/919383423689?text=hello" class="whatsapp-float" target="_blank" aria-label="Chat on WhatsApp">
+    <a href="https://wa.me/919383423689?text=Hi%20Magic%20Home,%20I%20am%20interested%20in%20today's%20offers!" class="whatsapp-float" target="_blank" aria-label="Chat on WhatsApp">
         <i class="fab fa-whatsapp"></i>
     </a>
 
@@ -528,8 +804,11 @@
         <div class="hero-container">
             <div class="hero-text">
                 <h1>Transform Your Living Space with <span>Magic Home</span></h1>
-                <p>Your trusted destination for premium home appliances. Discover modern refrigerators, washing machines, air conditioners, microwaves, televisions, and kitchen appliances at affordable prices.</p>
-                <a href="#products" class="btn-primary">Explore Products</a>
+                <p>Your trusted destination for premium home appliances in Nedumkandam. Discover modern refrigerators, washing machines, air conditioners, microwaves, televisions, and kitchen appliances at affordable prices.</p>
+                <div class="hero-buttons">
+                    <a href="#offers" class="btn-primary"><i class="fas fa-bolt"></i> Today's Deals</a>
+                    <a href="#products" class="btn-secondary">Explore All</a>
+                </div>
             </div>
             <div class="hero-visual">
                 <div class="appliance-badge">
@@ -540,9 +819,35 @@
         </div>
     </section>
 
+    <!-- TODAY'S OFFERS SECTION -->
+    <section class="offers-section" id="offers">
+        <h2 class="section-title">Today's <span>Special Offers</span></h2>
+        <p class="section-subtitle">Exclusive daily discounts available at Magic Home Nedumkandam. Limited stock!</p>
+
+        <!-- Countdown Timer -->
+        <div class="timer-container">
+            <div class="timer-label"><i class="fas fa-clock"></i> Deals End In:</div>
+            <div class="timer-boxes">
+                <div class="timer-box" id="hours">08 <span>Hours</span></div>
+                <div class="timer-box" id="minutes">42 <span>Mins</span></div>
+                <div class="timer-box" id="seconds">18 <span>Secs</span></div>
+            </div>
+        </div>
+
+        <!-- Offers Grid with High-Quality Images -->
+        <div class="offers-grid" id="offers-grid">
+            <div class="offer-card" aria-live="polite">
+                <div class="offer-details">
+                    <h3 class="offer-title">Loading offers...</h3>
+                    <p class="offer-desc">Fetching the latest deals from Magic Home.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Appliance Categories Section -->
     <section class="features" id="products">
-        <h2 class="section-title">Featured Categories</h2>
+        <h2 class="section-title">Explore <span>Categories</span></h2>
         <div class="grid-products">
             <div class="card">
                 <i class="fas fa-snowflake"></i>
@@ -579,12 +884,12 @@
 
     <!-- Location & Google Maps Section -->
     <section class="location-section" id="location">
-        <h2 class="section-title">Visit Our Store</h2>
+        <h2 class="section-title">Visit Our <span>Store</span></h2>
         <div class="location-container">
             <div class="location-info">
                 <h3>Magic Home Appliances</h3>
-                <p><i class="fas fa-map-marker-alt"></i> Address: Magic home, Court Jn, Nedumkandam east, Idukki, Kerala 685553, India</p>
-                <p><i class="fas fa-phone-alt"></i> +91 93834 23689</p>
+                <p><i class="fas fa-map-marker-alt"></i> Address: R5M6+34Q, Nedumkandam, Kerala 685553, India</p> 
+                <p><a href="tel:+919383423689"><i class="fas fa-phone-alt"></i> +91 93834 23689</a></p>
                 
                 <div class="hours-list">
                     <h4><i class="fas fa-clock" style="color: var(--orange);"></i> Store Hours</h4>
@@ -600,18 +905,8 @@
                 </div>
             </div>
             <div class="map-wrapper">
-
-<iframe 
-    src="https://www.google.com/maps/embed?pb=!1m28!1m12!1m3!1d31460.702814870503!2d77.1350000!3d9.8378378!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m13!3e6!4m5!1s0x3b07049e6f3d793b%3A0x6b1584ed9a6c11bc!2sNedumkandam%2C%20Kerala%20685553%2C%20India!3m2!1d9.8378378!2d77.1415255!4m5!1s0x3b07097df728045f%3A0x217b3106cca1775b!2sWhite%20Mart%20Magic%20Home%2C%20R5M6%2B34Q%2C%20Nedumkandam%2C%20Kerala%20685553!3m2!1d9.8325809!2d77.1603509!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin" 
-    width="600" 
-    height="450" 
-    style="border:0;" 
-    allowfullscreen="" 
-    loading="lazy" 
-    referrerpolicy="no-referrer-when-downgrade">
-</iframe>
-
-            </div>
+      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2385.3439398152705!2d77.16075054913152!3d9.832670755523129!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3b07a97bf728045f%3A0x217b3106cc01775b!2sWhite%20Mart%20Magic%20Home!5e1!3m2!1sen!2sro!4v1785999665307!5m2!1sen!2sro" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe>
+             </div>
         </div>
     </section>
 
@@ -637,6 +932,13 @@
             navList.classList.toggle('active');
         });
 
+        // Close menu on link click
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navList.classList.remove('active');
+            });
+        });
+
         // Dynamic Hero Icon Cycler
         const appliances = [
             { icon: 'fa-tv', text: 'Smart TVs' },
@@ -649,6 +951,98 @@
         let index = 0;
         const bannerIcon = document.getElementById('banner-icon');
         const bannerLabel = document.getElementById('banner-label');
+        const offersGrid = document.getElementById('offers-grid');
+
+        const whatsappNumber = '919383423689';
+        const offersEndpoint = 'https://script.google.com/macros/s/AKfycbwCRvelIopJl08Ic9R-xqpHSPNy3qaMQeIaRMxshuTx4p15R3o01nk_D1bJMZgqqSTO/exec';
+
+        function escapeHtml(value) {
+            return String(value)
+                .replaceAll('&', '&amp;')
+                .replaceAll('<', '&lt;')
+                .replaceAll('>', '&gt;')
+                .replaceAll('"', '&quot;')
+                .replaceAll("'", '&#39;');
+        }
+
+        function formatPrice(value) {
+            return `₹${new Intl.NumberFormat('en-IN').format(Number(value) || 0)}`;
+        }
+
+        function buildWhatsAppLink(title) {
+            const message = `Hi, I'm interested in claiming the ${title} offer!`;
+            return `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
+        }
+
+        function renderOffers(offers) {
+            if (!Array.isArray(offers) || offers.length === 0) {
+                offersGrid.innerHTML = `
+                    <div class="offer-card">
+                        <div class="offer-details">
+                            <h3 class="offer-title">No offers available</h3>
+                            <p class="offer-desc">Please check back later for the latest deals.</p>
+                        </div>
+                    </div>
+                `;
+                return;
+            }
+
+            offersGrid.innerHTML = offers.map((offer) => {
+                const title = escapeHtml(offer.title || 'Special Offer');
+                const description = escapeHtml(offer['offer-desc'] || '');
+                const image = escapeHtml(offer.image || '');
+                const badgeDiscount = escapeHtml(offer['badge-discount'] || '');
+                const badgeTag = escapeHtml(offer['badge-tag'] || '');
+                const dealPrice = formatPrice(offer['deal-price']);
+                const mrp = formatPrice(offer.mrp);
+                const saveAmount = formatPrice(offer.save ?? (Number(offer.mrp) - Number(offer['deal-price'])));
+
+                return `
+                    <div class="offer-card">
+                        <span class="badge-discount">${badgeDiscount}</span>
+                        <span class="badge-tag">${badgeTag}</span>
+                        <div class="offer-img-wrapper">
+                            <img src="${image}" alt="${title}">
+                        </div>
+                        <div class="offer-details">
+                            <h3 class="offer-title">${title}</h3>
+                            <p class="offer-desc">${description}</p>
+                            <div class="price-container">
+                                <span class="deal-price">${dealPrice}</span>
+                                <span class="original-price">${mrp}</span>
+                                <span class="save-amount">Save ${saveAmount}</span>
+                            </div>
+                            <a href="${buildWhatsAppLink(offer.title || 'this')}" class="btn-claim" target="_blank" rel="noopener noreferrer">
+                                <i class="fab fa-whatsapp"></i> Claim Offer on WhatsApp
+                            </a>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        async function loadOffers() {
+            try {
+                const response = await fetch(offersEndpoint);
+
+                if (!response.ok) {
+                    throw new Error(`Failed to load offers: ${response.status}`);
+                }
+
+                const offers = await response.json();
+                renderOffers(offers);
+            } catch (error) {
+                offersGrid.innerHTML = `
+                    <div class="offer-card">
+                        <div class="offer-details">
+                            <h3 class="offer-title">Offers unavailable</h3>
+                            <p class="offer-desc">We could not load the latest offers right now.</p>
+                        </div>
+                    </div>
+                `;
+                console.error(error);
+            }
+        }
 
         setInterval(() => {
             index = (index + 1) % appliances.length;
@@ -667,6 +1061,27 @@
             }, 300);
 
         }, 3000);
+
+        // Dynamic Countdown Timer
+        function updateTimer() {
+            const now = new Date();
+            const endOfDay = new Date();
+            endOfDay.setHours(23, 59, 59, 999);
+
+            const diff = endOfDay - now;
+
+            const h = Math.floor((diff / (1000 * 60 * 60)) % 24);
+            const m = Math.floor((diff / (1000 * 60)) % 60);
+            const s = Math.floor((diff / 1000) % 60);
+
+            document.getElementById('hours').childNodes[0].nodeValue = h < 10 ? '0' + h + ' ' : h + ' ';
+            document.getElementById('minutes').childNodes[0].nodeValue = m < 10 ? '0' + m + ' ' : m + ' ';
+            document.getElementById('seconds').childNodes[0].nodeValue = s < 10 ? '0' + s + ' ' : s + ' ';
+        }
+
+        setInterval(updateTimer, 1000);
+        updateTimer();
+        loadOffers();
     </script>
 </body>
 </html>
