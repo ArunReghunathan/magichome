@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>White Mart | Magic Home Nedumkandam</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <link rel="icon" type="image/x-icon" href="./favicon.ico">
+  <style>
+    :root {
+      --orange: #ff6b00;
+      --orange-hover: #e05d00;
+      --black: #121212;
+      --white: #ffffff;
+      --whatsapp-green: #25d366;
+    }
+
+    header {
+      background-color: var(--black);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    }
+
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 1rem 1.5rem;
+    }
+
+    .logo {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--white);
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.65rem;
+    }
+
+    .logo img {
+      height: 40px;
+      width: auto;
+      display: block;
+    }
+
+    .logo span {
+      color: var(--orange);
+    }
+
+    .nav-links {
+      display: flex;
+      list-style: none;
+      gap: 1.6rem;
+      align-items: center;
+    }
+
+    .nav-links a {
+      color: var(--white);
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.3s ease;
+    }
+
+    .nav-links a:hover {
+      color: var(--orange);
+    }
+
+    .nav-links .offer-link {
+      background: var(--orange);
+      color: var(--white);
+      padding: 0.4rem 0.95rem;
+      border-radius: 20px;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+      box-shadow: 0 0 10px rgba(255, 107, 0, 0.5);
+      animation: pulse-glow 2s infinite;
+    }
+
+    .nav-links .offer-link:hover {
+      background: var(--orange-hover);
+      color: var(--white);
+    }
+
+    @keyframes pulse-glow {
+      0%, 100% { box-shadow: 0 0 10px rgba(255, 107, 0, 0.5); }
+      50% { box-shadow: 0 0 18px rgba(255, 107, 0, 0.85); }
+    }
+
+    .menu-toggle {
+      display: none;
+      color: var(--white);
+      font-size: 1.5rem;
+      cursor: pointer;
+    }
+
+    .whatsapp-float {
+      position: fixed;
+      width: 60px;
+      height: 60px;
+      bottom: 30px;
+      right: 30px;
+      background-color: var(--whatsapp-green);
+      color: var(--white);
+      border-radius: 50px;
+      text-align: center;
+      font-size: 32px;
+      box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4);
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .whatsapp-float:hover {
+      transform: scale(1.08);
+      box-shadow: 0 6px 20px rgba(37, 211, 102, 0.6);
+      color: var(--white);
+    }
+
+    .whatsapp-float::before {
+      content: '';
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      background-color: var(--whatsapp-green);
+      opacity: 0.7;
+      z-index: -1;
+      animation: wa-pulse 2s infinite;
+    }
+
+    @keyframes wa-pulse {
+      0% { transform: scale(1); opacity: 0.7; }
+      100% { transform: scale(1.6); opacity: 0; }
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-8px); }
+    }
+    @keyframes pulse-subtle {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.85; }
+    }
+    .animate-float {
+      animation: float 4s ease-in-out infinite;
+    }
+    .animate-pulse-subtle {
+      animation: pulse-subtle 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+    }
+
+    @media (max-width: 768px) {
+      .logo img {
+        height: 36px;
+      }
+
+      .nav-links {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background: var(--black);
+        padding: 1.25rem;
+        text-align: center;
+      }
+
+      .nav-links.active {
+        display: flex;
+      }
+
+      .menu-toggle {
+        display: block;
+      }
+
+      .whatsapp-float {
+        width: 50px;
+        height: 50px;
+        font-size: 26px;
+        bottom: 20px;
+        right: 20px;
+      }
+    }
+  </style>
+</head>
+<body class="bg-slate-900 text-slate-100 min-h-screen font-sans antialiased selection:bg-amber-500 selection:text-slate-900">
+
+  <!-- Header / Navigation -->
+  <header>
+    <nav>
+      <a href="/" class="logo"><img src="logo1.png" alt="Magic Home logo">Magic <span>Home</span></a>
+      <div class="menu-toggle" id="mobile-menu">
+        <i class="fas fa-bars"></i>
+      </div>
+      <ul class="nav-links" id="nav-list">
+        <li><a href="/">Home</a></li> 
+  
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Floating WhatsApp Button -->
+  <a href="https://wa.me/919383423689?text=Hi%20Magic%20Home,%20I%20am%20interested%20in%20today%27s%20offers!" class="whatsapp-float" target="_blank" aria-label="Chat on WhatsApp" rel="noopener noreferrer">
+    <i class="fab fa-whatsapp"></i>
+  </a>
+
+  <div id="home" class="p-4 md:p-8 min-h-[calc(100vh-76px)] flex items-center justify-center">
+
+
+
+  <!-- Background Decorative Blurs -->
+  <div class="fixed top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-blue-600/20 rounded-full blur-3xl pointer-events-none"></div>
+  <div class="fixed bottom-1/4 left-1/3 w-80 h-80 bg-amber-500/10 rounded-full blur-3xl pointer-events-none"></div>
+
+  <!-- Main Card Container -->
+  <main class="relative w-full max-w-4xl bg-slate-800/80 backdrop-blur-xl border border-slate-700/60 rounded-3xl shadow-2xl overflow-hidden transition-all duration-300 hover:border-slate-600/80">
+    <div class="grid grid-cols-1 md:grid-cols-2">
+      
+      <!-- Product Image Section -->
+      <div class="relative p-8 bg-gradient-to-br from-slate-800 to-slate-850 flex items-center justify-center overflow-hidden border-b md:border-b-0 md:border-r border-slate-700/50 group">
+        
+        <!-- Badges Container -->
+        <div class="absolute top-6 left-6 z-10 flex flex-col gap-2">
+          <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-rose-500/10 text-rose-400 border border-rose-500/30 shadow-lg animate-pulse-subtle">
+            <i data-lucide="flame" class="w-3.5 h-3.5"></i> <span id="offer-badge-primary">HOT DEAL</span>
+          </span>
+          <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-amber-500 text-slate-950 shadow-md">
+            <i data-lucide="percent" class="w-3.5 h-3.5"></i> <span id="offer-badge-secondary">10% OFF</span>
+          </span>
+        </div>
+
+        <!-- Product Image -->
+        <div class="relative z-0 p-4 transition-transform duration-500 ease-out group-hover:scale-105 animate-float">
+          <img 
+            src="https://www.pittappillilonline.com/uploads/products/ifb-90kg-fully-automatic-front-load-washing-machine-executive-bls-id-901466e137855fc78.jpg" 
+            alt="IFB Washing Machine" 
+            class="max-h-72 md:max-h-80 w-auto object-contain rounded-xl drop-shadow-[0_20px_25px_rgba(0,0,0,0.5)]"
+          />
+        </div>
+      </div>
+
+      <!-- Offer Details Section -->
+      <div class="p-6 md:p-8 flex flex-col justify-between space-y-6">
+        <div>
+          <!-- Title & Subtitle -->
+          <div class="space-y-2">
+            <p id="offer-category" class="text-xs font-semibold tracking-widest text-blue-400 uppercase">Premium Home Appliances</p>
+            <h1 id="offer-title" class="text-2xl md:text-3xl font-extrabold text-white tracking-tight">IFB WASHING MACHINE</h1>
+            <p id="offer-subtitle" class="text-sm text-slate-400 leading-relaxed">FULLY AUTOMATIC FRONT LOAD WASHING MACHINE 7Kg</p>
+          </div>
+
+          <!-- Pricing Block -->
+          <div class="mt-6 p-4 rounded-2xl bg-slate-900/60 border border-slate-700/50 space-y-3">
+            <div class="flex items-baseline gap-3 flex-wrap">
+              <span id="offer-price" class="text-3xl md:text-4xl font-extrabold text-amber-400 tracking-tight">
+                ₹33,000
+              </span>
+              <span id="offer-original-price" class="text-base text-slate-500 line-through font-medium">
+                ₹36,290
+              </span>
+   
+            </div>
+            
+            <div class="text-xs text-slate-400 flex items-center gap-1.5">
+              <i data-lucide="sparkles" class="w-4 h-4 text-emerald-400"></i>
+              <span>Total Savings: <strong id="offer-savings" class="text-emerald-400 font-semibold">₹3,290</strong></span>
+            </div>
+          </div>
+
+          <!-- Highlights -->
+ 
+        </div>
+
+        <!-- Call to Action Section -->
+        <div class="space-y-3 pt-2">
+          <button id="offer-cta" class="w-full py-4 px-6 rounded-xl bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-slate-950 font-bold text-sm tracking-wide shadow-lg shadow-amber-500/20 hover:shadow-amber-500/30 transition-all duration-200 transform active:scale-[0.98] flex items-center justify-center gap-2">
+            <i data-lucide="shopping-bag" class="w-4 h-4"></i>
+            <span id="offer-cta-text">CLAIM OFFER NOW</span>
+          </button>
+          
+          <p id="offer-note" class="text-center text-[11px] text-slate-500 flex items-center justify-center gap-1">
+            <i data-lucide="clock" class="w-3.5 h-3.5"></i> <span id="offer-note-text">Limited time promotional deal. Stocks moving fast.</span>
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </main>
+  </div>
+
+  <script>
+    // Mobile Navigation Toggle
+    const mobileMenu = document.getElementById('mobile-menu');
+    const navList = document.getElementById('nav-list');
+    const offerApiUrl = 'https://script.google.com/macros/s/AKfycbwCRvelIopJl08Ic9R-xqpHSPNy3qaMQeIaRMxshuTx4p15R3o01nk_D1bJMZgqqSTO/exec';
+    const currencyFormatter = new Intl.NumberFormat('en-IN', {
+      style: 'currency',
+      currency: 'INR',
+      maximumFractionDigits: 0,
+    });
+
+    const offerElements = {
+      category: document.getElementById('offer-category'),
+      title: document.getElementById('offer-title'),
+      subtitle: document.getElementById('offer-subtitle'),
+      price: document.getElementById('offer-price'),
+      originalPrice: document.getElementById('offer-original-price'),
+      savings: document.getElementById('offer-savings'),
+      ctaText: document.getElementById('offer-cta-text'),
+      noteText: document.getElementById('offer-note-text'),
+      badgePrimary: document.getElementById('offer-badge-primary'),
+      badgeSecondary: document.getElementById('offer-badge-secondary'),
+      image: document.querySelector('main img[alt="IFB Washing Machine"]'),
+    };
+
+    const fallbackOffer = {
+      category: 'Premium Home Appliances',
+      title: 'IFB WASHING MACHINE',
+      subtitle: 'FULLY AUTOMATIC FRONT LOAD WASHING MACHINE 7Kg',
+      price: 33000,
+      originalPrice: 36290,
+      savings: 3291,
+      cta: 'CLAIM OFFER NOW',
+      note: 'Limited time promotional deal. Stocks moving fast.',
+      badgePrimary: 'HOT DEAL',
+      badgeSecondary: '10% OFF',
+    };
+
+    function toCurrency(value) {
+      const numericValue = Number(String(value).replace(/[^0-9.-]/g, ''));
+      return Number.isFinite(numericValue) ? currencyFormatter.format(numericValue) : String(value ?? '');
+    }
+
+    function firstOfferItem(response) {
+      if (Array.isArray(response)) {
+        return response[0] || null;
+      }
+
+      if (response && typeof response === 'object') {
+        const listKeys = ['items', 'data', 'offers', 'results', 'records', 'rows'];
+        for (const key of listKeys) {
+          if (Array.isArray(response[key]) && response[key].length) {
+            return response[key][0];
+          }
+        }
+
+        return response;
+      }
+
+      return null;
+    }
+
+    function applyOffer(offer) {
+      const normalizedOffer = offer || {};
+      const title = normalizedOffer.title || normalizedOffer.name || normalizedOffer.productName || normalizedOffer.product_name || fallbackOffer.title;
+      const subtitle = normalizedOffer.subtitle || normalizedOffer.description || normalizedOffer.shortDescription || normalizedOffer.short_description || normalizedOffer.model || fallbackOffer.subtitle;
+      const price = normalizedOffer.price ?? normalizedOffer.offerPrice ?? normalizedOffer.sellingPrice ?? normalizedOffer.current_price ?? fallbackOffer.price;
+      const originalPrice = normalizedOffer.originalPrice ?? normalizedOffer.mrp ?? normalizedOffer.regularPrice ?? normalizedOffer.oldPrice ?? fallbackOffer.originalPrice;
+      const savings = normalizedOffer.savings ?? normalizedOffer.saveAmount ?? normalizedOffer.discountAmount ?? (Number(String(originalPrice).replace(/[^0-9.-]/g, '')) - Number(String(price).replace(/[^0-9.-]/g, '')));
+      const category = normalizedOffer.category || normalizedOffer.tag || normalizedOffer.type || fallbackOffer.category;
+      const ctaLabel = normalizedOffer.cta || normalizedOffer.buttonText || normalizedOffer.actionText || fallbackOffer.cta;
+      const note = normalizedOffer.note || normalizedOffer.footerNote || normalizedOffer.urgencyText || fallbackOffer.note;
+      const image = normalizedOffer.image || normalizedOffer.imageUrl || normalizedOffer.photo || normalizedOffer.img || normalizedOffer.thumbnail;
+      const badgeDiscount = normalizedOffer['badge-discount'];
+
+      if (offerElements.category) offerElements.category.textContent = category;
+      if (offerElements.title) offerElements.title.textContent = title;
+      if (offerElements.subtitle) offerElements.subtitle.textContent = subtitle;
+      if (offerElements.price) offerElements.price.textContent = toCurrency(price);
+      if (offerElements.originalPrice) offerElements.originalPrice.textContent = toCurrency(originalPrice);
+      if (offerElements.savings) offerElements.savings.textContent = toCurrency(savings);
+      if (offerElements.ctaText) offerElements.ctaText.textContent = ctaLabel;
+      if (offerElements.noteText) offerElements.noteText.textContent = note;
+      if (offerElements.badgePrimary) offerElements.badgePrimary.textContent = normalizedOffer.badge || normalizedOffer.label || normalizedOffer.highlight || fallbackOffer.badgePrimary;
+      if (offerElements.badgeSecondary) offerElements.badgeSecondary.textContent =badgeDiscount ||  normalizedOffer.discountLabel || normalizedOffer.offerLabel || (savings ? `${toCurrency(savings)} OFF` : fallbackOffer.badgeSecondary);
+
+      if (offerElements.image && image) {
+        offerElements.image.src = image;
+        offerElements.image.alt = title;
+      }
+    }
+
+    async function loadOfferFromApi() {
+      try {
+        const response = await fetch(offerApiUrl, { cache: 'no-store' });
+        if (!response.ok) {
+          throw new Error(`Request failed with status ${response.status}`);
+        }
+
+        const payload = await response.json();
+        applyOffer(firstOfferItem(payload) || fallbackOffer);
+      } catch (error) {
+        applyOffer(fallbackOffer);
+      }
+    }
+
+    if (mobileMenu && navList) {
+      mobileMenu.addEventListener('click', () => {
+        navList.classList.toggle('active');
+      });
+
+      document.querySelectorAll('.nav-links a').forEach((link) => {
+        link.addEventListener('click', () => {
+          navList.classList.remove('active');
+        });
+      });
+    }
+
+    // Initialize Lucide Icons
+    lucide.createIcons();
+    loadOfferFromApi();
+  </script>
+</body>
+</html>
