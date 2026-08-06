@@ -1,9 +1,672 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Magic Home | Premium Home Appliances</title>
+    <!-- Google Fonts & Font Awesome Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --orange: #FF6B00;
+            --orange-hover: #E05D00;
+            --black: #121212;
+            --dark-grey: #1E1E1E;
+            --white: #FFFFFF;
+            --light-grey: #F5F5F7;
+            --whatsapp-green: #25D366;
+        }
 
-  <head>
-    <title>Magic Home</title>
-  </head>
-  <body>
-    <h1>Magichome</h1>
-  </body>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background-color: var(--white);
+            color: var(--black);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Navigation */
+        header {
+            background-color: var(--black);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--white);
+            text-decoration: none;
+        }
+
+        .logo span {
+            color: var(--orange);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--orange);
+        }
+
+        .menu-toggle {
+            display: none;
+            color: var(--white);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Hero Banner */
+        .hero {
+            position: relative;
+            background: linear-gradient(135deg, var(--black) 60%, var(--dark-grey) 100%);
+            color: var(--white);
+            min-height: 85vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            padding: 2rem;
+        }
+
+        .hero::before, .hero::after {
+            content: '';
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            z-index: 1;
+        }
+
+        .hero::before {
+            width: 300px;
+            height: 300px;
+            background: rgba(255, 107, 0, 0.3);
+            top: 10%;
+            left: -50px;
+            animation: pulse 8s infinite alternate;
+        }
+
+        .hero::after {
+            width: 400px;
+            height: 400px;
+            background: rgba(255, 107, 0, 0.15);
+            bottom: -50px;
+            right: -50px;
+            animation: pulse 6s infinite alternate-reverse;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1) translate(0, 0); }
+            100% { transform: scale(1.2) translate(30px, -20px); }
+        }
+
+        .hero-container {
+            max-width: 1200px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+            z-index: 2;
+        }
+
+        .hero-text h1 {
+            font-size: 3.2rem;
+            line-height: 1.2;
+            margin-bottom: 1.5rem;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .hero-text h1 span {
+            color: var(--orange);
+        }
+
+        .hero-text p {
+            font-size: 1.1rem;
+            color: #DDD;
+            margin-bottom: 2rem;
+            animation: fadeInUp 1s ease-out 0.2s backwards;
+        }
+
+        .btn-primary {
+            display: inline-block;
+            background-color: var(--orange);
+            color: var(--white);
+            padding: 0.8rem 2.2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(255, 107, 0, 0.4);
+            animation: fadeInUp 1s ease-out 0.4s backwards;
+        }
+
+        .btn-primary:hover {
+            background-color: var(--orange-hover);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(255, 107, 0, 0.6);
+        }
+
+        /* Floating Showcase */
+        .hero-visual {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            animation: fadeIn 1.5s ease-out;
+        }
+
+        .appliance-badge {
+            width: 320px;
+            height: 320px;
+            border-radius: 30px;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+            animation: float 4s ease-in-out infinite;
+        }
+
+        .appliance-badge i {
+            font-size: 6rem;
+            color: var(--orange);
+            margin-bottom: 1rem;
+            filter: drop-shadow(0 0 15px rgba(255, 107, 0, 0.5));
+            transition: opacity 0.3s ease, transform 0.3s ease;
+        }
+
+        .appliance-badge span {
+            font-size: 1.2rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            transition: opacity 0.3s ease;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* Categories Section */
+        .features {
+            padding: 5rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.2rem;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 4px;
+            background: var(--orange);
+            margin: 0.5rem auto 0;
+            border-radius: 2px;
+        }
+
+        .grid-products {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .card {
+            background: var(--light-grey);
+            border-radius: 12px;
+            padding: 2.5rem 1.5rem;
+            text-align: center;
+            transition: all 0.3s ease;
+            border: 1px solid #E0E0E0;
+        }
+
+        .card:hover {
+            transform: translateY(-8px);
+            border-color: var(--orange);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+        }
+
+        .card i {
+            font-size: 3rem;
+            color: var(--orange);
+            margin-bottom: 1.2rem;
+        }
+
+        .card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 0.8rem;
+        }
+
+        .card p {
+            font-size: 0.95rem;
+            color: #555;
+        }
+
+        /* Location & Map Section */
+        .location-section {
+            padding: 4rem 2rem;
+            background-color: var(--light-grey);
+            border-top: 1px solid #E0E0E0;
+        }
+
+        .location-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1.5fr;
+            gap: 2rem;
+            align-items: start;
+        }
+
+        .location-info {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 12px;
+            border-left: 5px solid var(--orange);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        }
+
+        .location-info h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--black);
+        }
+
+        .location-info p {
+            margin-bottom: 0.8rem;
+            color: #444;
+            display: flex;
+            align-items: flex-start;
+            gap: 0.8rem;
+        }
+
+        .location-info p i {
+            color: var(--orange);
+            font-size: 1.2rem;
+            margin-top: 4px;
+        }
+
+        .hours-list {
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 1px solid #EEE;
+        }
+
+        .hours-list h4 {
+            font-size: 1rem;
+            margin-bottom: 0.5rem;
+            color: var(--black);
+        }
+
+        .hours-list ul {
+            list-style: none;
+            font-size: 0.9rem;
+            color: #555;
+        }
+
+        .hours-list li {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.2rem 0;
+        }
+
+        .map-wrapper {
+            width: 100%;
+            height: 100%;
+            min-height: 400px;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .map-wrapper iframe {
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+
+        /* Floating WhatsApp Button */
+        .whatsapp-float {
+            position: fixed;
+            width: 60px;
+            height: 60px;
+            bottom: 30px;
+            right: 30px;
+            background-color: var(--whatsapp-green);
+            color: var(--white);
+            border-radius: 50px;
+            text-align: center;
+            font-size: 32px;
+            box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .whatsapp-float:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 20px rgba(37, 211, 102, 0.6);
+            color: var(--white);
+        }
+
+        /* Pulsing Ring Effect on WhatsApp Button */
+        .whatsapp-float::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background-color: var(--whatsapp-green);
+            opacity: 0.7;
+            z-index: -1;
+            animation: wa-pulse 2s infinite;
+        }
+
+        @keyframes wa-pulse {
+            0% { transform: scale(1); opacity: 0.7; }
+            100% { transform: scale(1.6); opacity: 0; }
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--black);
+            color: var(--white);
+            padding: 3rem 2rem 1.5rem;
+            border-top: 3px solid var(--orange);
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            padding-bottom: 2rem;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 1.5rem;
+            font-size: 0.85rem;
+            color: #888;
+        }
+
+        /* Mobile Adjustments */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: var(--black);
+                padding: 1.5rem;
+                text-align: center;
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .menu-toggle {
+                display: block;
+            }
+
+            .hero-container {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .hero-text h1 {
+                font-size: 2.3rem;
+            }
+
+            .appliance-badge {
+                width: 240px;
+                height: 240px;
+            }
+            
+            .appliance-badge i {
+                font-size: 4.5rem;
+            }
+
+            .location-container {
+                grid-template-columns: 1fr;
+            }
+
+            .whatsapp-float {
+                width: 50px;
+                height: 50px;
+                font-size: 26px;
+                bottom: 20px;
+                right: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header / Navigation -->
+    <header>
+        <nav>
+            <a href="#" class="logo">Magic <span>Home</span></a>
+            <div class="menu-toggle" id="mobile-menu">
+                <i class="fas fa-bars"></i>
+            </div>
+            <ul class="nav-links" id="nav-list">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#products">Categories</a></li>
+                <li><a href="#location">Visit Us</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Floating WhatsApp Button -->
+    <a href="https://wa.me/919383423689?text=hello" class="whatsapp-float" target="_blank" aria-label="Chat on WhatsApp">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <!-- Animated Hero Banner -->
+    <section class="hero" id="home">
+        <div class="hero-container">
+            <div class="hero-text">
+                <h1>Transform Your Living Space with <span>Magic Home</span></h1>
+                <p>Your trusted destination for premium home appliances. Discover modern refrigerators, washing machines, air conditioners, microwaves, televisions, and kitchen appliances at affordable prices.</p>
+                <a href="#products" class="btn-primary">Explore Products</a>
+            </div>
+            <div class="hero-visual">
+                <div class="appliance-badge">
+                    <i class="fas fa-tv" id="banner-icon"></i>
+                    <span id="banner-label">Smart TVs</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Appliance Categories Section -->
+    <section class="features" id="products">
+        <h2 class="section-title">Featured Categories</h2>
+        <div class="grid-products">
+            <div class="card">
+                <i class="fas fa-snowflake"></i>
+                <h3>Refrigerators</h3>
+                <p>Energy-efficient cooling solutions to keep your produce fresh longer.</p>
+            </div>
+            <div class="card">
+                <i class="fas fa-soap"></i>
+                <h3>Washing Machines</h3>
+                <p>Advanced fabric care with front and top-load automated washers.</p>
+            </div>
+            <div class="card">
+                <i class="fas fa-wind"></i>
+                <h3>Air Conditioners</h3>
+                <p>Powerful inverter ACs designed for high efficiency and rapid cooling.</p>
+            </div>
+            <div class="card">
+                <i class="fas fa-microchip"></i>
+                <h3>Microwaves</h3>
+                <p>Smart convection and grill microwaves for effortless cooking.</p>
+            </div>
+            <div class="card">
+                <i class="fas fa-tv"></i>
+                <h3>Televisions</h3>
+                <p>Ultra HD 4K displays delivering cinema-grade visuals at home.</p>
+            </div>
+            <div class="card">
+                <i class="fas fa-blender"></i>
+                <h3>Kitchen Appliances</h3>
+                <p>Modern blenders, processors, and multi-cookers built for convenience.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Location & Google Maps Section -->
+    <section class="location-section" id="location">
+        <h2 class="section-title">Visit Our Store</h2>
+        <div class="location-container">
+            <div class="location-info">
+                <h3>Magic Home Appliances</h3>
+                <p><i class="fas fa-map-marker-alt"></i> Address: Magic home, Court Jn, Nedumkandam east, Idukki, Kerala 685553, India</p>
+                <p><i class="fas fa-phone-alt"></i> +91 93834 23689</p>
+                
+                <div class="hours-list">
+                    <h4><i class="fas fa-clock" style="color: var(--orange);"></i> Store Hours</h4>
+                    <ul>
+                        <li><span>Monday:</span> <span>9:30 am – 8:00 pm</span></li>
+                        <li><span>Tuesday:</span> <span>9:30 am – 8:00 pm</span></li>
+                        <li><span>Wednesday:</span> <span>9:30 am – 8:00 pm</span></li>
+                        <li><span>Thursday:</span> <span>9:30 am – 8:00 pm</span></li>
+                        <li><span>Friday:</span> <span>9:30 am – 8:00 pm</span></li>
+                        <li><span>Saturday:</span> <span>9:30 am – 8:00 pm</span></li>
+                        <li><span>Sunday:</span> <span>11:00 am – 5:30 pm</span></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="map-wrapper">
+
+<iframe 
+    src="https://www.google.com/maps/embed?pb=!1m28!1m12!1m3!1d31460.702814870503!2d77.1350000!3d9.8378378!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m13!3e6!4m5!1s0x3b07049e6f3d793b%3A0x6b1584ed9a6c11bc!2sNedumkandam%2C%20Kerala%20685553%2C%20India!3m2!1d9.8378378!2d77.1415255!4m5!1s0x3b07097df728045f%3A0x217b3106cca1775b!2sWhite%20Mart%20Magic%20Home%2C%20R5M6%2B34Q%2C%20Nedumkandam%2C%20Kerala%20685553!3m2!1d9.8325809!2d77.1603509!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin" 
+    width="600" 
+    height="450" 
+    style="border:0;" 
+    allowfullscreen="" 
+    loading="lazy" 
+    referrerpolicy="no-referrer-when-downgrade">
+</iframe>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact">
+        <div class="footer-content">
+            <div class="logo">Magic <span>Home</span></div>
+            <p><i class="fas fa-phone-alt"></i> Call Us: +91 93834 23689</p>
+            <p><i class="fab fa-whatsapp"></i> WhatsApp: +91 93834 23689</p>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Magic Home Appliances. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script>
+        // Mobile Navigation Toggle
+        const mobileMenu = document.getElementById('mobile-menu');
+        const navList = document.getElementById('nav-list');
+
+        mobileMenu.addEventListener('click', () => {
+            navList.classList.toggle('active');
+        });
+
+        // Dynamic Hero Icon Cycler
+        const appliances = [
+            { icon: 'fa-tv', text: 'Smart TVs' },
+            { icon: 'fa-snowflake', text: 'Refrigerators' },
+            { icon: 'fa-wind', text: 'Air Conditioners' },
+            { icon: 'fa-soap', text: 'Washing Machines' },
+            { icon: 'fa-blender', text: 'Kitchen Prep' }
+        ];
+
+        let index = 0;
+        const bannerIcon = document.getElementById('banner-icon');
+        const bannerLabel = document.getElementById('banner-label');
+
+        setInterval(() => {
+            index = (index + 1) % appliances.length;
+            
+            bannerIcon.style.opacity = '0';
+            bannerLabel.style.opacity = '0';
+            bannerIcon.style.transform = 'scale(0.8)';
+            
+            setTimeout(() => {
+                bannerIcon.className = `fas ${appliances[index].icon}`;
+                bannerLabel.textContent = appliances[index].text;
+                
+                bannerIcon.style.opacity = '1';
+                bannerLabel.style.opacity = '1';
+                bannerIcon.style.transform = 'scale(1)';
+            }, 300);
+
+        }, 3000);
+    </script>
+</body>
 </html>
