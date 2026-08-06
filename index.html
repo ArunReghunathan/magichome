@@ -252,11 +252,13 @@
             align-items: center;
             box-shadow: 0 20px 40px rgba(0,0,0,0.5);
             animation: float 4s ease-in-out infinite;
+            padding: 1.5rem;
         }
 
-        .appliance-badge i {
-            font-size: 6rem;
-            color: var(--orange);
+        .appliance-badge img {
+            width: 180px;
+            height: 180px;
+            object-fit: contain;
             margin-bottom: 1rem;
             filter: drop-shadow(0 0 15px rgba(255, 107, 0, 0.5));
             transition: opacity 0.3s ease, transform 0.3s ease;
@@ -541,10 +543,12 @@
             box-shadow: 0 10px 25px rgba(0,0,0,0.08);
         }
 
-        .card i {
-            font-size: 3rem;
-            color: var(--orange);
+        .card img {
+            width: 72px;
+            height: 72px;
+            object-fit: contain;
             margin-bottom: 1.2rem;
+            filter: drop-shadow(0 0 10px rgba(255, 107, 0, 0.2));
         }
 
         .card h3 {
@@ -812,7 +816,7 @@
             </div>
             <div class="hero-visual">
                 <div class="appliance-badge">
-                    <i class="fas fa-tv" id="banner-icon"></i>
+                    <img id="banner-image" src="" alt="Smart TVs">
                     <span id="banner-label">Smart TVs</span>
                 </div>
             </div>
@@ -850,32 +854,32 @@
         <h2 class="section-title">Explore <span>Categories</span></h2>
         <div class="grid-products">
             <div class="card">
-                <i class="fas fa-snowflake"></i>
+                <img class="category-image" data-category="refrigerators" alt="Refrigerators">
                 <h3>Refrigerators</h3>
                 <p>Energy-efficient cooling solutions to keep your produce fresh longer.</p>
             </div>
             <div class="card">
-                <i class="fas fa-soap"></i>
+                <img class="category-image" data-category="washingmachines" alt="Washing Machines">
                 <h3>Washing Machines</h3>
                 <p>Advanced fabric care with front and top-load automated washers.</p>
             </div>
             <div class="card">
-                <i class="fas fa-wind"></i>
+                <img class="category-image" data-category="airconditioners" alt="Air Conditioners">
                 <h3>Air Conditioners</h3>
                 <p>Powerful inverter ACs designed for high efficiency and rapid cooling.</p>
             </div>
             <div class="card">
-                <i class="fas fa-microchip"></i>
+                <img class="category-image" data-category="microwaves" alt="Microwaves">
                 <h3>Microwaves</h3>
                 <p>Smart convection and grill microwaves for effortless cooking.</p>
             </div>
             <div class="card">
-                <i class="fas fa-tv"></i>
+                <img class="category-image" data-category="televisions" alt="Televisions">
                 <h3>Televisions</h3>
                 <p>Ultra HD 4K displays delivering cinema-grade visuals at home.</p>
             </div>
             <div class="card">
-                <i class="fas fa-blender"></i>
+                <img class="category-image" data-category="kitchenappliances" alt="Kitchen Appliances">
                 <h3>Kitchen Appliances</h3>
                 <p>Modern blenders, processors, and multi-cookers built for convenience.</p>
             </div>
@@ -939,19 +943,47 @@
             });
         });
 
-        // Dynamic Hero Icon Cycler
+        // Dynamic Hero Image Cycler
+        const applianceImages = {
+            tv: 'data:image/svg+xml;charset=UTF-8,' + encodeURIComponent(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><rect x="10" y="10" width="44" height="30" rx="4" fill="#111827"/><rect x="16" y="16" width="32" height="18" rx="2" fill="#3b82f6"/><rect x="20" y="42" width="24" height="6" rx="3" fill="#6b7280"/><rect x="24" y="48" width="16" height="4" rx="2" fill="#f59e0b"/></svg>`),
+            refrigerator: 'https://magichome.in/wm.png',
+            airConditioner: 'data:image/svg+xml;charset=UTF-8,' + encodeURIComponent(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><rect x="12" y="18" width="40" height="24" rx="4" fill="#0f172a"/><rect x="18" y="24" width="8" height="12" rx="2" fill="#38bdf8"/><rect x="30" y="24" width="16" height="12" rx="2" fill="#e0f2fe"/><path d="M20 16h8" stroke="#f59e0b" stroke-width="3" stroke-linecap="round"/><path d="M38 16h8" stroke="#f59e0b" stroke-width="3" stroke-linecap="round"/></svg>`),
+            washingMachine:   'wm.png',
+            kitchen: 'data:image/svg+xml;charset=UTF-8,' + encodeURIComponent(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><rect x="18" y="12" width="28" height="40" rx="6" fill="#f8fafc" stroke="#94a3b8" stroke-width="2"/><rect x="24" y="18" width="16" height="10" rx="2" fill="#fb923c"/><rect x="22" y="32" width="20" height="10" rx="2" fill="#ef4444"/><path d="M26 44h12" stroke="#111827" stroke-width="3" stroke-linecap="round"/></svg>`),
+            microwave: 'data:image/svg+xml;charset=UTF-8,' + encodeURIComponent(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><rect x="12" y="18" width="40" height="24" rx="6" fill="#111827"/><rect x="18" y="24" width="28" height="12" rx="2" fill="#60a5fa"/><rect x="48" y="24" width="4" height="12" rx="2" fill="#f59e0b"/><rect x="20" y="44" width="24" height="4" rx="2" fill="#d1d5db"/></svg>`)
+        };
+
         const appliances = [
-            { icon: 'fa-tv', text: 'Smart TVs' },
-            { icon: 'fa-snowflake', text: 'Refrigerators' },
-            { icon: 'fa-wind', text: 'Air Conditioners' },
-            { icon: 'fa-soap', text: 'Washing Machines' },
-            { icon: 'fa-blender', text: 'Kitchen Prep' }
+            { image: applianceImages.tv, text: 'Smart TVs' },
+            { image: applianceImages.refrigerator, text: 'Refrigerators' },
+            { image: applianceImages.airConditioner, text: 'Air Conditioners' },
+            { image: applianceImages.washingMachine, text: 'Washing Machines' },
+            { image: applianceImages.kitchen, text: 'Kitchen Prep' }
         ];
 
+        const categoryImageMap = {
+            refrigerators: applianceImages.refrigerator,
+            washingmachines: applianceImages.washingMachine,
+            airconditioners: applianceImages.airConditioner,
+            microwaves: applianceImages.microwave,
+            televisions: applianceImages.tv,
+            kitchenappliances: applianceImages.kitchen
+        };
+
         let index = 0;
-        const bannerIcon = document.getElementById('banner-icon');
+        const bannerImage = document.getElementById('banner-image');
         const bannerLabel = document.getElementById('banner-label');
         const offersGrid = document.getElementById('offers-grid');
+
+        document.querySelectorAll('.category-image').forEach((img) => {
+            const key = img.getAttribute('data-category');
+            if (categoryImageMap[key]) {
+                img.src = categoryImageMap[key];
+            }
+        });
+
+        bannerImage.src = appliances[0].image;
+        bannerImage.alt = appliances[0].text;
 
         const whatsappNumber = '919383423689';
         const offersEndpoint = 'https://script.google.com/macros/s/AKfycbwCRvelIopJl08Ic9R-xqpHSPNy3qaMQeIaRMxshuTx4p15R3o01nk_D1bJMZgqqSTO/exec';
@@ -1047,17 +1079,18 @@
         setInterval(() => {
             index = (index + 1) % appliances.length;
             
-            bannerIcon.style.opacity = '0';
+            bannerImage.style.opacity = '0';
             bannerLabel.style.opacity = '0';
-            bannerIcon.style.transform = 'scale(0.8)';
+            bannerImage.style.transform = 'scale(0.8)';
             
             setTimeout(() => {
-                bannerIcon.className = `fas ${appliances[index].icon}`;
+                bannerImage.src = appliances[index].image;
+                bannerImage.alt = appliances[index].text;
                 bannerLabel.textContent = appliances[index].text;
                 
-                bannerIcon.style.opacity = '1';
+                bannerImage.style.opacity = '1';
                 bannerLabel.style.opacity = '1';
-                bannerIcon.style.transform = 'scale(1)';
+                bannerImage.style.transform = 'scale(1)';
             }, 300);
 
         }, 3000);
