@@ -61,6 +61,15 @@
             font-weight: 700;
             color: var(--white);
             text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .logo img {
+            height: 48px;
+            width: auto;
+            display: block;
         }
 
         .logo span {
@@ -717,6 +726,10 @@
 
         /* Mobile Adjustments */
         @media (max-width: 768px) {
+            .logo img {
+                height: 40px;
+            }
+
             .nav-links {
                 display: none;
                 flex-direction: column;
@@ -784,7 +797,7 @@
     <!-- Header / Navigation -->
     <header>
         <nav>
-            <a href="#" class="logo">Magic <span>Home</span></a>
+            <a href="#" class="logo"><img src="logo1.png" alt="Magic Home logo">Magic <span>Home</span></a>
             <div class="menu-toggle" id="mobile-menu">
                 <i class="fas fa-bars"></i>
             </div>
@@ -999,7 +1012,7 @@
         }
 
         function formatPrice(value) {
-            return `₹${new Intl.NumberFormat('en-IN').format(Number(value) || 0)}`;
+            return `₹ ${new Intl.NumberFormat('en-IN').format(Number(value) || 0)}`;
         }
 
         function buildWhatsAppLink(title) {
