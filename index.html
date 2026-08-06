@@ -945,12 +945,12 @@
 
         // Dynamic Hero Image Cycler
         const applianceImages = {
-            tv: 'data:image/svg+xml;charset=UTF-8,' + encodeURIComponent(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><rect x="10" y="10" width="44" height="30" rx="4" fill="#111827"/><rect x="16" y="16" width="32" height="18" rx="2" fill="#3b82f6"/><rect x="20" y="42" width="24" height="6" rx="3" fill="#6b7280"/><rect x="24" y="48" width="16" height="4" rx="2" fill="#f59e0b"/></svg>`),
-            refrigerator: 'https://magichome.in/wm.png',
-            airConditioner: 'data:image/svg+xml;charset=UTF-8,' + encodeURIComponent(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><rect x="12" y="18" width="40" height="24" rx="4" fill="#0f172a"/><rect x="18" y="24" width="8" height="12" rx="2" fill="#38bdf8"/><rect x="30" y="24" width="16" height="12" rx="2" fill="#e0f2fe"/><path d="M20 16h8" stroke="#f59e0b" stroke-width="3" stroke-linecap="round"/><path d="M38 16h8" stroke="#f59e0b" stroke-width="3" stroke-linecap="round"/></svg>`),
+            tv: 'tv.png',
+            refrigerator: 'ref.png',
+            airConditioner: 'ac.png',
             washingMachine:   'wm.png',
-            kitchen: 'data:image/svg+xml;charset=UTF-8,' + encodeURIComponent(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><rect x="18" y="12" width="28" height="40" rx="6" fill="#f8fafc" stroke="#94a3b8" stroke-width="2"/><rect x="24" y="18" width="16" height="10" rx="2" fill="#fb923c"/><rect x="22" y="32" width="20" height="10" rx="2" fill="#ef4444"/><path d="M26 44h12" stroke="#111827" stroke-width="3" stroke-linecap="round"/></svg>`),
-            microwave: 'data:image/svg+xml;charset=UTF-8,' + encodeURIComponent(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><rect x="12" y="18" width="40" height="24" rx="6" fill="#111827"/><rect x="18" y="24" width="28" height="12" rx="2" fill="#60a5fa"/><rect x="48" y="24" width="4" height="12" rx="2" fill="#f59e0b"/><rect x="20" y="44" width="24" height="4" rx="2" fill="#d1d5db"/></svg>`)
+            kitchen: 'all.png',
+            microwave: 'mo.png'
         };
 
         const appliances = [
@@ -958,7 +958,8 @@
             { image: applianceImages.refrigerator, text: 'Refrigerators' },
             { image: applianceImages.airConditioner, text: 'Air Conditioners' },
             { image: applianceImages.washingMachine, text: 'Washing Machines' },
-            { image: applianceImages.kitchen, text: 'Kitchen Prep' }
+            { image: applianceImages.kitchen, text: 'Kitchen Prep' },
+            { image: applianceImages.microwave, text: 'Microwaves' }
         ];
 
         const categoryImageMap = {
