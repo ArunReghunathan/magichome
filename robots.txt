@@ -1,0 +1,6 @@
+# robots.txt for WhiteMart Magic Home
+User-agent: *
+Allow: /
+
+# Sitemap Location
+Sitemap: https://magichome.in/sitemap.xml
